@@ -1,0 +1,29 @@
+version: '3.9'
+
+networks:
+  web_network:
+    name: purephp
+    driver: bridge
+
+services:
+  php:
+    build:
+      context: .
+    container_name: pure-php
+    volumes:
+      - ./src:/var/www/html
+    restart: always
+    networks:
+      - web_network
+  
+  nginx:
+    image: nginx:stable-alpine
+    container_name: php-pure-nginx
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx/conf:/etc/nginx/conf.d
+    ports:
+      - "8083:80"
+    restart: always
+    networks:
+      - web_network
