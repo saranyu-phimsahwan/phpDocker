@@ -1,2 +1,2 @@
 <?php
-echo 'Hello Pure Php ทดสอบ2';
+echo 'Hello Pure Php ทดสอบ3';
